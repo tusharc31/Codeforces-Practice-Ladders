@@ -1,0 +1,55 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- check if this works -->
+<script type="text/javascript" src="data.js"></script>
+<!-- check if this works -->
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+
+<table class="table table-striped">
+    <tr  class="bg-info">
+        <th>Random</th>
+        <th>Random</th>
+        <th>Random</th>
+    </tr>
+
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script>
+	var myArray = JSON.parse(data);
+    buildTable(myArray)
+	
+	// $.ajax({
+	// 	method:'GET',
+	// 	url:'https://codeforces.com/api/contest.list',
+	// 	success:function(response){
+	// 		myArray = response.result
+	// 		buildTable(myArray)
+	// 		console.log(myArray)
+	// 	}
+	// })
+
+	function buildTable(data){
+        console.log(data)
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i].name}</td>
+							<td>${data[i].name}</td>
+							<td>${data[i].name}</td>
+					  </tr>`
+			table.innerHTML += row
+		}
+	}
+
+</script>
