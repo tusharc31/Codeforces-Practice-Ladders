@@ -1,4 +1,6 @@
 import requests
+import webbrowser
+import subprocess
 
 min_rating=1600
 max_rating=2100
@@ -63,13 +65,22 @@ def search():
         elif found_status is False:
             todo=i
             found_status=True
+    url='https://codeforces.com/contest/'+str(todo['contestId'])+'/problem/'+todo['index']
     print("\nSolve: "+todo['name'])
-    print("Link: https://codeforces.com/contest/"+str(todo['contestId'])+'/problem/'+todo['index'])
-    print("Progress: "+str(done)+'/'+str(len(qlist))+'\n')   
+    print("Link: "+url)
+    print("Progress: "+str(done)+'/'+str(len(qlist))+'\n')  
+    return url 
+
+
+# Launches cpp file with template code and opens the question found in browser
+def environment(url):
+    subprocess.call(["code", "1.cpp"])
+    webbrowser.open(url)
 
 
 # Calling relevent functions
 contests=fetch_contests()
 qlist=fetch_all_questions()
 questions_finished = fetch_user_solves()
-search()
+url=search()
+environment(url)
