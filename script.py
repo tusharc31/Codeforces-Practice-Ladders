@@ -8,7 +8,7 @@ min_rating = 1800
 max_rating = 1900
 
 
-# Returns list of contestIDs from which questions are to be picked
+# Returns list of contest IDs from which questions are to be picked
 def fetch_contests():
     data = requests.get("https://codeforces.com/api/contest.list").json()
     contests = []
