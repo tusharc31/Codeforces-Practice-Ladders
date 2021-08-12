@@ -15,7 +15,7 @@ def fetch_contests():
     for i in data['result']:
         if "ducational" in i['name']:
             contests.append(i['id'])
-        if "ICPC" in i['name']:
+        if "ICPC" in i['name'] and "otlin" not in i['name']:
             contests.append(i['id'])
     return contests
 
