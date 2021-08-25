@@ -33,6 +33,7 @@ def fetch_total_problems(contests):
             except:
                 pass
     total_problems.sort(key=lambda x: x["rating"])
+    total_problems.reverse()
     return total_problems
 
 
@@ -42,8 +43,11 @@ def fetch_user_solves():
     data = requests.get(
         "https://codeforces.com/api/user.status?handle="+handle).json()
     for i in data['result']:
-        if i['verdict'] == "OK":
-            problems_finished.append(i['problem'])
+        try:
+            if i['verdict'] == "OK":
+                problems_finished.append(i['problem'])
+        except:
+            pass
     return problems_finished
 
 
