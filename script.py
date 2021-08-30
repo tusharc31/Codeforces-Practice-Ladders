@@ -42,12 +42,12 @@ def fetch_user_solves():
     problems_finished = []
     data = requests.get(
         "https://codeforces.com/api/user.status?handle="+handle).json()
-    for i in data['result']:
-        try:
+    try:
+        for i in data['result']:
             if i['verdict'] == "OK":
                 problems_finished.append(i['problem'])
-        except:
-            pass
+    except:
+        pass
     return problems_finished
 
 
@@ -62,13 +62,17 @@ def search(total_problems, problems_finished):
         elif found_status is False:
             todo = i
             found_status = True
-    url = 'https://codeforces.com/contest/' + \
-        str(todo['contestId'])+'/problem/'+todo['index']
-    print("\nSuggested Problem: "+todo['name'])
-    print("Link: "+url)
-    print("Current Progress: "+str(done)+'/' +
-          str(len(total_problems))+' Problems\n')
-    return url
+    if found_status==True:
+        url = 'https://codeforces.com/contest/' + \
+            str(todo['contestId'])+'/problem/'+todo['index']
+        print("\nSuggested Problem: "+todo['name'])
+        print("Link: "+url)
+        print("Current Progress: "+str(done)+'/' +
+            str(len(total_problems))+' Problems\n')
+        return url
+    else:
+        print("\nAll problems from this range have been completed!\n")
+        return None
 
 
 # Launches cpp file with template code and opens the problem found in browser
@@ -83,4 +87,4 @@ _contests = fetch_contests()
 _total_problems = fetch_total_problems(_contests)
 _problems_finished = fetch_user_solves()
 _url = search(_total_problems, _problems_finished)
-setup(_url)
+if _url is not None: setup(_url)
