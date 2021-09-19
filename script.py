@@ -32,8 +32,8 @@ def fetch_total_problems(contests):
                     total_problems.append(i)
             except:
                 pass
-    total_problems.sort(key=lambda x: x["rating"])
     total_problems.reverse()
+    total_problems.sort(key=lambda x: x["rating"])
     return total_problems
 
 
