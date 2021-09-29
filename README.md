@@ -10,3 +10,12 @@ Suggested Problem: Pairs
 Link: https://codeforces.com/contest/1463/problem/D
 Current Progress: 48/138 Problems
 ```
+
+---
+
+## Personalised problem suggestion
+
+- For a user, the problems solved by the user is extracted.<br>For all of these problems, each of it's tag's frequency is incremented.
+- For the 5 most recently solved problems the frequency is increased greatly, so as to get new genres of questions each time.
+- Then the score is calculated in such a way that lower frequency tags get higher score.
+- Then, the problem gets a score as the sum of score of it's tags, and finally a random problem is selected among all problems with weights as their scores.
