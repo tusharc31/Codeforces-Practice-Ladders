@@ -55,18 +55,15 @@ def personalised_search(total_problems, problems_finished):
         )[0]
         url = 'https://codeforces.com/contest/' + \
             str(problem['contestId'])+'/problem/'+problem['index']
-        print("\nSuggested Problem: "+problem['name'])
-        print("Link: "+url)
-        print(
-            "Current Progress:",
-            str(len(total_problems) - len(unsolved_problems)) +
-            '/'+str(len(total_problems)),
-            'Problems'
-        )
-        return url
+        name = "Suggested Problem: "+problem['name']
+        link = "Link: "+url
+        progress = "Current Progress: " + \
+            str(len(total_problems) - len(unsolved_problems)) + \
+            '/'+str(len(total_problems)) + ' Problems'
+        return name, link, progress, url
     else:
         print("\nAll problems from this range have been completed!\n")
-        return None
+        return None, None, None, None
 
 
 if __name__ == "__main__":
@@ -78,4 +75,8 @@ if __name__ == "__main__":
     contests = fetch_contests()
     total_problems = fetch_total_problems(contests, min_rating, max_rating)
     problems_finished = fetch_user_solves(handle)
-    url = personalised_search(total_problems, problems_finished)
+    name, link, progress, url = personalised_search(
+        total_problems, problems_finished)
+    print(name)
+    print(link)
+    print(progress)

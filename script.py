@@ -60,14 +60,18 @@ def search(total_problems, problems_finished):
     if found_status == True:
         url = 'https://codeforces.com/contest/' + \
             str(todo['contestId'])+'/problem/'+todo['index']
+        name = "Suggested Problem: "+todo['name']
+        link = "Link: "+url
+        progress = "Current Progress: " + \
+            str(done)+'/' + str(len(total_problems))+' Problems'
         print("\nSuggested Problem: "+todo['name'])
         print("Link: "+url)
         print("Current Progress: "+str(done)+'/' +
               str(len(total_problems))+' Problems\n')
-        return url
+        return name, link, progress, url
     else:
         print("\nAll problems from this range have been completed!\n")
-        return None
+        return None, None, None, None
 
 
 # Launches cpp file with template code and opens the problem found in browser
@@ -87,6 +91,6 @@ if __name__ == "__main__":
     _contests = fetch_contests()
     _total_problems = fetch_total_problems(_contests, min_rating, max_rating)
     _problems_finished = fetch_user_solves(handle)
-    _url = search(_total_problems, _problems_finished)
+    name, link, progress, _url = search(_total_problems, _problems_finished)
     if _url is not None:
         setup(_url)
