@@ -57,6 +57,12 @@ def personalised_search(total_problems, problems_finished):
             str(problem['contestId'])+'/problem/'+problem['index']
         print("\nSuggested Problem: "+problem['name'])
         print("Link: "+url)
+        print(
+            "Current Progress:",
+            str(len(total_problems) - len(unsolved_problems)) +
+            '/'+str(len(total_problems)),
+            'Problems'
+        )
         return url
     else:
         print("\nAll problems from this range have been completed!\n")
