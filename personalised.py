@@ -153,8 +153,7 @@ if __name__ == "__main__":
         elif sys.argv[i] == "-max":
             max_rating = int(sys.argv[i + 1])
         elif (
-            sys.argv[i] == "suggest_problem.py"
-            or sys.argv[i] == handle
+            sys.argv[i] == handle
             or (min_rating is not None and sys.argv[i] == str(min_rating))
             or (max_rating is not None and sys.argv[i] == str(max_rating))
         ):
