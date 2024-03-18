@@ -46,7 +46,9 @@ def fetch_user_solves(handle):
     Return problems already solved by the user
     """
     problems_finished = []
-    data = requests.get("https://codeforces.com/api/user.status?handle=" + handle).json()
+    data = requests.get(
+        "https://codeforces.com/api/user.status?handle=" + handle
+    ).json()
     try:
         for i in data["result"]:
             if i["verdict"] == "OK":
@@ -115,7 +117,9 @@ def personalised_search(total_problems, problems_finished):
     unsolved_problems = get_unsolved_problems(total_problems, problems_finished)
     if len(unsolved_problems) > 0:
         problem = random.choices(
-            unsolved_problems, weights=[prob["score"] for prob in unsolved_problems], k=1
+            unsolved_problems,
+            weights=[prob["score"] for prob in unsolved_problems],
+            k=1,
         )[
             0
         ]  # Select a problem randomly based on its score
@@ -160,12 +164,12 @@ if __name__ == "__main__":
             continue
         else:
             print(
-                "Usage: python3 suggest_problem.py -handle <handle> -min <min_rating> -max <max_rating>"
+                "Usage: python3 personalised.py -handle <handle> -min <min_rating> -max <max_rating>"
             )
             raise SystemExit
     if handle is None or min_rating is None or max_rating is None:
         print(
-            "Usage: python3 suggest_problem.py -handle <handle> -min <min_rating> -max <max_rating>"
+            "Usage: python3 personalised.py -handle <handle> -min <min_rating> -max <max_rating>"
         )
         raise SystemExit
 
